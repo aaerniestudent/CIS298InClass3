@@ -8,6 +8,9 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 
@@ -16,6 +19,8 @@ public class CrimeFragment extends Fragment {
     //declare a class level variable for a crime
     private Crime mCrime;
     private EditText mTitleField;
+    private Button mDateButton;
+    private CheckBox mSolvedCheckBox;
 
     //this does not inflate the view like one for an activity
     @Override
@@ -49,6 +54,22 @@ public class CrimeFragment extends Fragment {
                 //usually blank
             }
         });
+
+        //find the date button
+        mDateButton = (Button)v.findViewById(R.id.crime_date);
+        //set the text on the date button
+        mDateButton.setText(mCrime.getDate().toString());
+        mDateButton.setEnabled(false);
+
+        mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
+        mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //set the crime's solved property
+                mCrime.setSolved(isChecked);
+            }
+        });
+
 
         return v;
     }
