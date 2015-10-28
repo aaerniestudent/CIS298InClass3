@@ -60,7 +60,6 @@ public class CrimeFragment extends Fragment {
         //set the text on the date button
         mDateButton.setText(mCrime.getDate().toString());
         mDateButton.setEnabled(false);
-
         mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
         mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -69,9 +68,6 @@ public class CrimeFragment extends Fragment {
                 mCrime.setSolved(isChecked);
             }
         });
-
-
         return v;
     }
-
 }
