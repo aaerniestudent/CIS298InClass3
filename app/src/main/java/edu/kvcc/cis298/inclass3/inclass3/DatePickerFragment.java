@@ -52,7 +52,7 @@ public class DatePickerFragment extends DialogFragment {
                 .setPositiveButton(android.R.string.ok,
                         new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                            public void onClick(DialogInterface dialogInterface, int which) {
                                 int year = mDatePicker.getYear();
                                 int month = mDatePicker.getMonth();
                                 int day = mDatePicker.getDayOfMonth();
@@ -64,6 +64,10 @@ public class DatePickerFragment extends DialogFragment {
     }
 
     private void sendResult(int resultCode, Date date) {
+        //the target fragment was set over in the CrimeFragment class when we wired
+        //up the date button to start this dialog fragment. because it was set over
+        //there before starting this fragment, this decision below should always
+        //fail, but just in case we are putting in a check.
         if (getTargetFragment() == null) {
             return;
         }
